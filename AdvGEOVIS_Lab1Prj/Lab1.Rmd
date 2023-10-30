@@ -1,0 +1,65 @@
+---
+title: "Lab1"
+author: "Akutsupis"
+date: "2023-10-30"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Import Statements
+
+```{r}
+library(ggplot2)
+library(sf)
+library(tidyverse)
+library(viridis)
+```
+
+## Import Dataset
+
+```{r}
+boulder <- st_read("G:/My Drive/GEOVISUALIZATION/AdvGEOVIS_Lab1Prj/files/BoulderSocialMedia.shp")
+```
+
+## Examine Dataset
+
+```{r}
+head(boulder)
+```
+
+It is a bit unclear what the units of this data are. Is it meters? Is it feet?
+
+```{r}
+
+ggplot() +
+  geom_sf(data = boulder, aes(color = Hydro_dis), fill = NA, alpha = 0.2) +
+  scale_colour_gradientn(colors = viridis(1000)) +  
+  theme_bw()
+```
+
+## Explanation:
+
+I thought the water data set was interesting, since Boulder is practically surrounded by water according to the data, while being quite landlocked in real life. There are lakes to the East, but there are only streams and small ponds to the West. I think this is one of the ways a dataset like this could be used to make somewhat misleading results.
+
+I wanted the near-water areas to be blue and have a gradient towards another color as distance from water increased. Unfortunately, having the gradients calculate themselves between "blue" and "green" did not work so I settled for Viridis, which is not as customizable.
+
+For this lab, I also experimented with R Markdown, Git, and Github.
+
+## Questions:
+
+1. Discuss the advantages and challenges associated with an open data science approach. Provide an example based on this week's reading. (1-2 paragraphs)
+
+An open data science approach allows anyone to replicate your data analysis and findings using your data. This can increase transparency, reliability, and accuracy of a study. However, an open data science approach also invites criticism, and allows for potential misuse of any data that contains personally identifiable or sensitive information.
+
+2. Create a markdown document that showcases an analysis of this week's data or any other dataset of your choice. Include descriptive text that explains your analysis, and incorporate figures and geovisualizations.
+
+That's this!
+
+Bonus: Capture a screenshot of the history of your Git commits. Share your strategy for utilizing Git in your workflow.
+
+I have been using Git as a place to save my files, which is quite effective, especially as I swap between computers. I just replaced my laptop, for example, and having all my files in Github made setup here a breeze, once I installed Git and R on the laptop and set those up.
+
+Feel free to reach out if you need any further assistance or guidance with these assignments.
